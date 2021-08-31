@@ -42,8 +42,8 @@ GROUP BY LASTNAME ASC, FIRSTNAME DESC;
 -- 10.Show the LastName, FirstName, and Phone of all customers who have had an order with Total greater than $100.00. Use a join.
 -- Present the results sorted by LastName in ascending order and then FirstName in descending order.(10points)
 SELECT C.LASTNAME, C.FIRSTNAME, C.PHONE
-FROM CUSTOMER C JOIN SALE S
-ON C.CUSTOMERID = S.CUSTOMERID
+FROM CUSTOMER C JOIN SALE S ON 
+C.CUSTOMERID = S.CUSTOMERID
 WHERE S.TOTAL > 100
 GROUP BY LASTNAME ASC, FIRSTNAME DESC;
 
@@ -57,11 +57,20 @@ FROM SALE S
 WHERE S.SALEID IN (
 	SELECT SI.SALEID
     FROM SALE_ITEM SI, ITEM I
-    WHERE SI.SALEITEMID = I.ITEMID
-    AND I.ITEMDESCRIPTION LIKE 'DESK LAMP'
+    -- WHERE SI.SALEITEMID = I.ITEMID
+    WHERE I.ITEMDESCRIPTION LIKE 'DESK LAMP'
 	)
 )
 GROUP BY LASTNAME ASC, FIRSTNAME DESC;
 
 -- 12.Show  the  LastName,  FirstName,  and  Phone  of  all  customers  who  have  bought  an  Item named ‘Desk Lamp’.
 -- Use a join, Present results sorted by LastName in ascending order and then FirstName is descending order.(20points)
+SELECT C.LASTNAME, C.FIRSTNAME, C.PHONE
+FROM CUSTOMER C 
+JOIN SALE S ON
+C.CUSTOMERID = S.CUSTOMERID
+JOIN SALE_ITEM SI ON
+S.CUSTOMERID = SI.SALEID
+JOIN ITEM I ON
+SI.SALEID = I.ITEMID
+WHERE I.ITEMDESCRIPTION LIKE 'DESK LAMP';
