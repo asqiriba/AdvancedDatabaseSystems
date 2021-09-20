@@ -1,7 +1,7 @@
 CREATE TABLE CUSTOMER(
 		CustomerID		Int				    NOT NULL auto_increment,
-		FirstName 		Char(25)	    NOT NULL,
-		LastName		  Char(25)	    NOT NULL,
+		FirstName 		Char(25)	    	NOT NULL,
+		LastName		  Char(25)	    	NOT NULL,
 		Phone			    Char(12) 	    NOT NULL,
 		Email			    varchar(100)	    NULL,
 		CONSTRAINT		CustomerPK    PRIMARY KEY(CustomerID)
